@@ -28,7 +28,7 @@ services:
     container_name: grafana
     hostname: grafana
     restart: always
-    environment:
+#    environment:
 #      - GF_AUTH_PROXY_ENABLED=true
 #      - GF_AUTH_ANONYMOUS_ENABLED=true
     volumes:
