@@ -11,9 +11,9 @@ docker-compose up -d
 ```
 
 ## Visualized Dashboard
-- grafana UI: http://127.0.0.1:3000
-  default user: admin/admin
-- prometheus UI: http://localhost:9090/targets
+- Grafana UI: http://localhost:3000
+- Prometheus UI: http://localhost:9090
+- Alertmanager UI: http://localhost:9093
 
 ![metrics](https://grafana.com/api/dashboards/12425/images/8296/image)
 

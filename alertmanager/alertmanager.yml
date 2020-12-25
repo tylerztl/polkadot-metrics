@@ -1,0 +1,23 @@
+global:
+  resolve_timeout: 5m
+  # The smarthost and SMTP sender used for mail notifications.
+  smtp_smarthost: smtp.163.com:994 # smtp.gmail.com:587
+  smtp_from: sender@163.com
+  smtp_auth_username: sender@163.com
+  smtp_auth_password: password
+  smtp_require_tls: true
+
+
+route:
+  group_by: ["alertname"]
+  group_wait: 1m
+  group_interval: 30s
+  repeat_interval: 5m
+  receiver: devops
+
+receivers:
+  - name: devops
+    email_configs:
+      - to: "receiver@163.com"
+        headers: { Subject: "xxx-测试环境-告警邮件"}
+        send_resolved: true

@@ -3,9 +3,12 @@ version: '3.5'
 volumes:
   prometheus-storage:
   grafana-storage:
+  alertmanager-storage:
 
 networks:
-  polkadot-metrics:
+  monitoring:
+    name: polkadot
+    driver: bridge
 
 services:
   # prometheus will pull metrics from fabric
@@ -15,19 +18,47 @@ services:
     hostname: prometheus
     restart: always
     tty: true
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --storage.tsdb.retention.time=15d
+      - --storage.tsdb.path=/prometheus
+      - --web.console.libraries=/usr/share/prometheus/console_libraries
+      - --web.console.templates=/usr/share/prometheus/console
+      - --log.level=warn
     volumes:
+#      - /etc/localtime:/etc/localtime:ro
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./prometheus/rules:/etc/prometheus/rules
       - prometheus-storage:/prometheus
     ports:
       - 9090:9090
     networks:
-      - polkadot-metrics
-
+      - monitoring
+  alertmanager:
+    image: prom/alertmanager:v0.21.0
+    container_name: alertmanager
+    hostname: alertmanager
+    restart: always
+    command:
+      - --config.file=/etc/alertmanager/alertmanager.yml
+      - --storage.path=/alertmanager
+      - --log.level=warn
+    volumes:
+#      - /etc/localtime:/etc/localtime:ro
+      - ./alertmanager/alertmanager.yml:/etc/alertmanager/alertmanager.yml
+      - alertmanager-storage:/alertmanager
+    ports:
+      - 9093:9093
+    networks:
+      - monitoring
+    links:
+      - prometheus
   grafana:
     image: grafana/grafana:7.3.3
     container_name: grafana
     hostname: grafana
     restart: always
+    user: admin:admin
 #    environment:
 #      - GF_AUTH_PROXY_ENABLED=true
 #      - GF_AUTH_ANONYMOUS_ENABLED=true
@@ -38,6 +69,6 @@ services:
     ports:
       - 3000:3000
     networks:
-      - polkadot-metrics
+      - monitoring
     links:
       - prometheus
