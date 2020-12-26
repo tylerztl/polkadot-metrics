@@ -58,7 +58,6 @@ services:
     container_name: grafana
     hostname: grafana
     restart: always
-    user: admin:admin
 #    environment:
 #      - GF_AUTH_PROXY_ENABLED=true
 #      - GF_AUTH_ANONYMOUS_ENABLED=true

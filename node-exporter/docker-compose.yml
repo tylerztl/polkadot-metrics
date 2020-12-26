@@ -1,0 +1,19 @@
+version: '3.5'
+
+services:
+  node-exporter:
+    image: prom/node-exporter:v1.0.1
+    container_name: node-exporter
+    restart: always
+    network_mode: host
+    privileged: true
+    command:
+      - --path.rootfs=/host/root
+      - --path.procfs=/host/proc
+      - --path.sysfs=/host/sys
+      - --log.level=warn
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/host/root:ro
