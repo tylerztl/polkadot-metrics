@@ -1,11 +1,11 @@
 global:
   resolve_timeout: 5m
   # The smarthost and SMTP sender used for mail notifications.
-  smtp_smarthost: smtp.163.com:25 # smtp.gmail.com:587
-  smtp_from: tailin_zhang@163.com
-  smtp_auth_username: tailin_zhang@163.com
+  smtp_smarthost: smtp.qq.com:587 # smtp.gmail.com:587
+  smtp_from: tailin_zhang@qq.com
+  smtp_auth_username: tailin_zhang@qq.com
   smtp_auth_password: password
-  smtp_require_tls: false
+  smtp_require_tls: true
 
 route:
   group_by: ["alertname"]
@@ -17,6 +17,6 @@ route:
 receivers:
   - name: devops
     email_configs:
-      - to: "tailin_zhang@qq.com"
+      - to: "tailin_zhang@163.com"
         headers: { Subject: "测试环境-告警邮件"}
         send_resolved: true
