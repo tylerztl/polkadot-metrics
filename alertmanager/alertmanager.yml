@@ -8,15 +8,15 @@ global:
   smtp_require_tls: true
 
 route:
-  group_by: ["alertname"]
-  group_wait: 1m
-  group_interval: 30s
-  repeat_interval: 5m
+  group_by: [ "alertname" ]
+  group_wait: 30s # default = 30s
+  group_interval: 1m # default = 5m
+  repeat_interval: 5m # default = 4h
   receiver: devops
 
 receivers:
   - name: devops
     email_configs:
       - to: "tailin_zhang@163.com"
-        headers: { Subject: "测试环境-告警邮件"}
+        headers: { Subject: "Polkadot Node Alerting Email" }
         send_resolved: true

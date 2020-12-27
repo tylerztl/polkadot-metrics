@@ -22,6 +22,14 @@ groups:
         for: 10m
         labels:
           severity: critical
+      - alert: ValidatorSelectedProposeBestBlock
+        expr: polkadot_proposer_block_constructed_count{job="polkadot-node"}
+        labels:
+          severity: info
+        annotations:
+          summary: "Propose best block on {{ $labels.instance }}"
+          description: "Polkadot validator node on {{ $labels.instance }} was selected
+      to propose best block {{ $value }}."
 
       ##############################################################################
       # Block finalization
@@ -147,11 +155,3 @@ groups:
           message: 'Authority discovery on node {{ $labels.instance }} fails to
       process more than 50 % of the values found on the DHT for more than 2
       hours.'
-
-      - alert: ValidatorSelectedProposeNewBlock
-        expr: 'polkadot_proposer_block_constructed_count{job="polkadot-node"}'
-        labels:
-          severity: info
-        annotations:
-          message: 'Validator node on {{ $labels.instance }} was selected to
-      propose new block {{ $value }}.'
