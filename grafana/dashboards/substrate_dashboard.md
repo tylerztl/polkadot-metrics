@@ -4,7 +4,7 @@ Shared templated Grafana dashboards.
 
 To import the dashboards follow the [Grafana
 documentation](https://grafana.com/docs/grafana/latest/reference/export_import/).
-You can see an example setup [here](../../../.maintain/sentry-node).
+You can see an example setup [here](https://github.com/paritytech/substrate/tree/master/.maintain/sentry-node).
 
 #### Required labels on Prometheus metrics
 

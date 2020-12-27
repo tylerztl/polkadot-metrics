@@ -17,8 +17,7 @@
   "editable": true,
   "gnetId": 8919,
   "graphTooltip": 0,
-  "id": 2,
-  "iteration": 1587711645469,
+  "iteration": 1609050499407,
   "links": [],
   "panels": [
     {
@@ -47,6 +46,12 @@
       "datasource": "Prometheus",
       "decimals": 1,
       "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "format": "s",
       "gauge": {
         "maxValue": 100,
@@ -124,6 +129,37 @@
     },
     {
       "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {},
+          "displayName": "",
+          "mappings": [],
+          "max": 100,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "rgb(17, 241, 7)",
+                "value": null
+              },
+              {
+                "color": "rgb(227, 255, 0)",
+                "value": 60
+              },
+              {
+                "color": "rgb(249, 11, 45)",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
       "gridPos": {
         "h": 6,
         "w": 16,
@@ -133,44 +169,17 @@
       "id": 177,
       "options": {
         "displayMode": "lcd",
-        "fieldOptions": {
+        "orientation": "horizontal",
+        "reduceOptions": {
           "calcs": [
             "last"
           ],
-          "defaults": {
-            "color": {
-              "mode": "thresholds"
-            },
-            "mappings": [],
-            "max": 100,
-            "min": 0,
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "rgb(17, 241, 7)",
-                  "value": null
-                },
-                {
-                  "color": "rgb(227, 255, 0)",
-                  "value": 60
-                },
-                {
-                  "color": "rgb(249, 11, 45)",
-                  "value": 80
-                }
-              ]
-            },
-            "title": "",
-            "unit": "percent"
-          },
-          "overrides": [],
+          "fields": "",
           "values": false
         },
-        "orientation": "horizontal",
         "showUnfilled": true
       },
-      "pluginVersion": "6.7.2",
+      "pluginVersion": "7.3.3",
       "targets": [
         {
           "expr": "100 - (avg(irate(node_cpu_seconds_total{instance=~\"$node\",mode=\"idle\"}[30m])) * 100)",
@@ -222,6 +231,12 @@
       ],
       "datasource": "Prometheus",
       "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "format": "short",
       "gauge": {
         "maxValue": 100,
@@ -308,6 +323,12 @@
       "datasource": "Prometheus",
       "decimals": 2,
       "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "format": "bytes",
       "gauge": {
         "maxValue": 100,
@@ -385,6 +406,12 @@
     {
       "columns": [],
       "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fontSize": "110%",
       "gridPos": {
         "h": 6,
@@ -574,7 +601,7 @@
       ],
       "title": "分区可用空间",
       "transform": "table",
-      "type": "table"
+      "type": "table-old"
     },
     {
       "cacheTimeout": null,
@@ -588,6 +615,12 @@
       "datasource": "Prometheus",
       "decimals": 2,
       "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "format": "percent",
       "gauge": {
         "maxValue": 100,
@@ -679,6 +712,13 @@
       "dashes": false,
       "datasource": "Prometheus",
       "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 0,
       "fillGradient": 1,
       "gridPos": {
@@ -709,10 +749,10 @@
       "links": [],
       "nullPointMode": "null as zero",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "6.4.2",
+      "pluginVersion": "7.3.3",
       "pointradius": 1,
       "points": false,
       "renderer": "flot",
@@ -836,6 +876,13 @@
       "datasource": "Prometheus",
       "decimals": 2,
       "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 4,
       "gridPos": {
@@ -868,9 +915,10 @@
       "maxPerRow": 6,
       "nullPointMode": "null as zero",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
+      "pluginVersion": "7.3.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -983,6 +1031,13 @@
       "datasource": "Prometheus",
       "editable": true,
       "error": false,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 5,
       "grid": {},
@@ -1014,9 +1069,10 @@
       "maxPerRow": 6,
       "nullPointMode": "null as zero",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
+      "pluginVersion": "7.3.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1124,6 +1180,13 @@
       "dashes": false,
       "datasource": "Prometheus",
       "description": "Reads completed: 每个磁盘分区每秒读完成次数\n\nWrites completed: 每个磁盘分区每秒写完成次数\n\nIO now 每个磁盘分区每秒正在处理的输入/输出请求数",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 4,
       "gridPos": {
@@ -1154,9 +1217,10 @@
       "links": [],
       "nullPointMode": "null as zero",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
+      "pluginVersion": "7.3.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1253,6 +1317,13 @@
       "dashes": false,
       "datasource": "Prometheus",
       "description": "Read bytes 每个磁盘分区每秒读取的比特数\nWritten bytes 每个磁盘分区每秒写入的比特数",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 4,
       "gridPos": {
@@ -1283,9 +1354,10 @@
       "links": [],
       "nullPointMode": "null as zero",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
+      "pluginVersion": "7.3.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1372,6 +1444,13 @@
       "dashes": false,
       "datasource": "Prometheus",
       "description": "Read time seconds 每个磁盘分区读操作花费的秒数\n\nWrite time seconds 每个磁盘分区写操作花费的秒数\n\nIO time seconds 每个磁盘分区输入/输出操作花费的秒数\n\nIO time weighted seconds每个磁盘分区输入/输出操作花费的加权秒数",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 4,
       "gridPos": {
@@ -1402,9 +1481,10 @@
       "links": [],
       "nullPointMode": "null as zero",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
+      "pluginVersion": "7.3.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1521,6 +1601,13 @@
       "datasource": "Prometheus",
       "decimals": null,
       "description": "每一秒钟的自然时间内，花费在I/O上的耗时。（wall-clock time）\n\nnode_disk_io_time_seconds_total：\n磁盘花费在输入/输出操作上的秒数。该值为累加值。（Milliseconds Spent Doing I/Os）\n\nirate(node_disk_io_time_seconds_total[1m])：\n计算每秒的速率：(last值-last前一个值)/时间戳差值，即：1秒钟内磁盘花费在I/O操作的时间占比。",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 5,
       "gridPos": {
@@ -1553,9 +1640,10 @@
       "maxPerRow": 6,
       "nullPointMode": "null as zero",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
+      "pluginVersion": "7.3.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1622,6 +1710,13 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 3,
       "gridPos": {
@@ -1651,9 +1746,10 @@
       "links": [],
       "nullPointMode": "null",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
+      "pluginVersion": "7.3.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1755,6 +1851,13 @@
       "dashes": false,
       "datasource": "Prometheus",
       "decimals": 2,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -1784,9 +1887,10 @@
       "links": [],
       "nullPointMode": "null as zero",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
+      "pluginVersion": "7.3.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1932,6 +2036,13 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 2,
       "gridPos": {
@@ -1963,9 +2074,10 @@
       "links": [],
       "nullPointMode": "null as zero",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
+      "pluginVersion": "7.3.3",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -2052,6 +2164,13 @@
       "dashes": false,
       "datasource": "Prometheus",
       "description": "Sockets_used - 已使用的所有协议套接字总量\n\nCurrEstab - 当前状态为 ESTABLISHED 或 CLOSE-WAIT 的 TCP 连接数\n\nTCP_alloc - 已分配（已建立、已申请到sk_buff）的TCP套接字数量\n\nTCP_tw - 等待关闭的TCP连接数\n\nUDP_inuse - 正在使用的 UDP 套接字数量",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 3,
       "fillGradient": 3,
       "gridPos": {
@@ -2084,9 +2203,10 @@
       "links": [],
       "nullPointMode": "null as zero",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
+      "pluginVersion": "7.3.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -2181,7 +2301,7 @@
     }
   ],
   "refresh": false,
-  "schemaVersion": 22,
+  "schemaVersion": 26,
   "style": "dark",
   "tags": [
     "Prometheus",
@@ -2192,14 +2312,15 @@
       {
         "allValue": null,
         "current": {
-          "text": "node",
-          "value": "node"
+          "selected": false,
+          "text": "node-exporter",
+          "value": "node-exporter"
         },
         "datasource": "Prometheus",
         "definition": "label_values(node_uname_info, job)",
+        "error": null,
         "hide": 2,
         "includeAll": false,
-        "index": -1,
         "label": "监控任务",
         "multi": false,
         "name": "job",
@@ -2218,14 +2339,15 @@
       {
         "allValue": null,
         "current": {
-          "text": "server101.qkc.top",
-          "value": "server101.qkc.top"
+          "selected": false,
+          "text": "iZ8vb5fsfuy468ivn2mub9Z",
+          "value": "iZ8vb5fsfuy468ivn2mub9Z"
         },
         "datasource": "Prometheus",
         "definition": "label_values(node_uname_info{job=~\"$job\"}, nodename)",
+        "error": null,
         "hide": 0,
         "includeAll": false,
-        "index": -1,
         "label": "主机名",
         "multi": false,
         "name": "hostname",
@@ -2245,14 +2367,15 @@
         "allFormat": "glob",
         "allValue": null,
         "current": {
-          "text": "172.240.24.101:9100",
-          "value": "172.240.24.101:9100"
+          "selected": false,
+          "text": "39.100.105.45:9100",
+          "value": "39.100.105.45:9100"
         },
         "datasource": "Prometheus",
         "definition": "label_values(node_uname_info{nodename=~\"$hostname\"},instance)",
+        "error": null,
         "hide": 0,
         "includeAll": false,
-        "index": -1,
         "label": "IP",
         "multi": false,
         "multiFormat": "regex values",
@@ -2272,14 +2395,15 @@
       {
         "allValue": null,
         "current": {
+          "selected": false,
           "text": "/",
           "value": "/"
         },
         "datasource": "Prometheus",
         "definition": "",
+        "error": null,
         "hide": 2,
         "includeAll": false,
-        "index": -1,
         "label": "",
         "multi": false,
         "name": "maxmount",
@@ -2306,9 +2430,9 @@
         },
         "datasource": "Prometheus",
         "definition": "",
+        "error": null,
         "hide": 2,
         "includeAll": false,
-        "index": -1,
         "label": "环境",
         "multi": false,
         "multiFormat": "regex values",
@@ -2329,16 +2453,19 @@
         "allFormat": "glob",
         "allValue": "",
         "current": {
-          "isNone": true,
-          "selected": false,
-          "text": "None",
-          "value": ""
+          "selected": true,
+          "text": [
+            "None"
+          ],
+          "value": [
+            ""
+          ]
         },
         "datasource": "Prometheus",
         "definition": "label_values(node_exporter_build_info{env=~'$env'},name)",
+        "error": null,
         "hide": 2,
         "includeAll": false,
-        "index": -1,
         "label": "名称",
         "multi": true,
         "multiFormat": "regex values",
@@ -2388,10 +2515,7 @@
     ]
   },
   "timezone": "browser",
-  "title": "Server",
+  "title": "Node Exporter",
   "uid": "9CWBz0bik",
-  "variables": {
-    "list": []
-  },
-  "version": 15
+  "version": 1
 }
