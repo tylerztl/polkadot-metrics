@@ -18,3 +18,10 @@ docker-compose up -d
 ![metrics](https://grafana.com/api/dashboards/12425/images/8296/image)
 
 ![metrics](https://grafana.com/api/dashboards/12425/images/8297/image)
+
+## Testing Alert Rules
+```
+docker exec -it prometheus sh
+
+promtool test rules /etc/prometheus/rules/alerting-rule-tests.yaml
+```
