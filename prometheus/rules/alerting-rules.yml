@@ -23,13 +23,13 @@ groups:
         labels:
           severity: critical
       - alert: ValidatorSelectedProposeBestBlock
-        expr: increase(polkadot_proposer_block_constructed_count{job="polkadot-node"}[6s]) >= 1
+        expr: increase(polkadot_proposer_block_constructed_count{job="polkadot-node"}[12s]) > 0
         labels:
           severity: info
         annotations:
           summary: "Propose best block on {{ $labels.instance }}"
           description: "Polkadot validator node on {{ $labels.instance }} was selected
-      to propose a best block, total number of constructed new block: {{ $value }}."
+      to propose best block {{ $value }}."
 
       ##############################################################################
       # Block finalization
