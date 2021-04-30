@@ -8,4 +8,5 @@ groups:
           severity: error
         annotations:
           summary: "Instance {{ $labels.instance }} down"
+          instance: "{{ $labels.job }}"
           description: "{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 30 seconds."

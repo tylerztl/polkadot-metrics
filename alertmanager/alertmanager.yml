@@ -20,3 +20,5 @@ receivers:
       - to: "tailin_zhang@163.com"
         headers: { Subject: "Polkadot Node Alerting Email" }
         send_resolved: true
+    webhook_configs:
+      - url: http://docker.for.mac.host.internal:8080/webhook
