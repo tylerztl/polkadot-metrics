@@ -102,23 +102,3 @@ scrape_configs:
     scrape_interval: 5s
     static_configs:
       - targets: [ '172.24.197.62:9629' ]
-  - job_name: 'elara-node1-feishu-webhook'
-    scrape_interval: 5s
-    static_configs:
-      - targets: [ '172.19.192.99:8080' ]
-  - job_name: 'elara-node2-feishu-webhook'
-    scrape_interval: 5s
-    static_configs:
-      - targets: [ '172.24.197.49:8080' ]
-  - job_name: 'elara-node3-feishu-webhook'
-    scrape_interval: 5s
-    static_configs:
-      - targets: [ '172.24.197.50:8080' ]
-  - job_name: 'elara-node4-feishu-webhook'
-    scrape_interval: 5s
-    static_configs:
-      - targets: [ '172.24.197.60:8080' ]
-  - job_name: 'elara-node5-feishu-webhook'
-    scrape_interval: 5s
-    static_configs:
-      - targets: [ '172.24.197.62:8080' ]
