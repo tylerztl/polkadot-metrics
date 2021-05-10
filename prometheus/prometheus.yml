@@ -9,7 +9,7 @@ alerting:
   alertmanagers:
     - static_configs:
         - targets:
-            - alertmanager:9093
+            - localhost:9093
 
 # Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
 rule_files:
@@ -20,18 +20,85 @@ rule_files:
 # Here it's Prometheus itself.
 scrape_configs:
   # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
-  - job_name: "prometheus"
+#  - job_name: "prometheus"
+#    static_configs:
+#      - targets: [ 'prometheus:9090' ]
+  - job_name: 'elara-node1-exporter'
     static_configs:
-      - targets: [ 'prometheus:9090' ]
-  - job_name: 'node-exporter'
+      - targets: [ '172.19.192.99:9100' ]
+  - job_name: 'elara-node2-exporter'
     static_configs:
-      - targets: [ 'docker0:9100' ]
-  - job_name: 'polkadot-node'
+      - targets: [ '172.24.197.49:9100' ]
+  - job_name: 'elara-node3-exporter'
+    static_configs:
+      - targets: [ '172.24.197.50:9100' ]
+  - job_name: 'elara-node4-exporter'
+    static_configs:
+      - targets: [ '172.24.197.60:9100' ]
+  - job_name: 'elara-node5-exporter'
+    static_configs:
+      - targets: [ '172.24.197.62:9100' ]
+  - job_name: 'polkadot-patract-elara-node1'
     scrape_interval: 5s
     static_configs:
-      - targets: [ 'docker0:9615' ] # docker.for.mac.host.internal
-
-#    relabel_configs:
-#      - source_labels: [__meta_consul_tags]
-#        regex: .*com.*
-#        action: keep
+      - targets: [ '172.19.192.99:9617' ]
+  - job_name: 'kusama-patract-elara-node1'
+    scrape_interval: 5s
+    static_configs:
+      - targets: [ '172.19.192.99:9616' ]
+  - job_name: 'rococo-patract-elara-node1'
+    scrape_interval: 5s
+    static_configs:
+      - targets: [ '172.19.192.99:9618' ]
+  - job_name: 'jupiter-poa-patract-elara-node1'
+    scrape_interval: 5s
+    static_configs:
+      - targets: [ '172.19.192.99:9615' ]
+  - job_name: 'darwinia-patract-elara-node1'
+    scrape_interval: 5s
+    static_configs:
+      - targets: [ '172.24.197.49:9620' ]
+  - job_name: 'dock-patract-elara-node1'
+    scrape_interval: 5s
+    static_configs:
+      - targets: [ '172.24.197.49:9621' ]
+  - job_name: 'edgeware-patract-elara-node1'
+    scrape_interval: 5s
+    static_configs:
+      - targets: [ '172.24.197.49:9622' ]
+  - job_name: 'kulupu-patract-elara-node1'
+    scrape_interval: 5s
+    static_configs:
+      - targets: [ '172.24.197.49:9625' ]
+  - job_name: 'chainx-patract-elara-node1'
+    scrape_interval: 5s
+    static_configs:
+      - targets: [ '172.24.197.50:9632' ]
+  - job_name: 'mandala-patract-elara-node1'
+    scrape_interval: 5s
+    static_configs:
+      - targets: [ '172.24.197.50:9633' ]
+  - job_name: 'nodle-patract-elara-node1'
+    scrape_interval: 5s
+    static_configs:
+      - targets: [ '172.24.197.50:9626' ]
+  - job_name: 'plasm-patract-elara-node1'
+    scrape_interval: 5s
+    static_configs:
+      - targets: [ '172.24.197.50:9627' ]
+  - job_name: 'stafi-patract-elara-node1'
+    scrape_interval: 5s
+    static_configs:
+      - targets: [ '172.24.197.50:9628' ]
+  - job_name: 'moonbeam-patract-elara-node1'
+    scrape_interval: 5s
+    static_configs:
+      - targets: [ '172.24.197.60:9635' ]
+  - job_name: 'westend-patract-elara-node1'
+    scrape_interval: 5s
+    static_configs:
+      - targets: [ '172.24.197.60:9634' ]
+  - job_name: 'subsocial-patract-elara-node1'
+    scrape_interval: 5s
+    static_configs:
+      - targets: [ '172.24.197.62:9629' ]

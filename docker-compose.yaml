@@ -5,10 +5,10 @@ volumes:
   grafana-storage:
   alertmanager-storage:
 
-networks:
-  monitoring:
-    name: polkadot
-    driver: bridge
+#networks:
+#  monitoring:
+#    name: polkadot
+#    driver: bridge
 
 services:
   # prometheus will pull metrics from fabric
@@ -17,6 +17,7 @@ services:
     container_name: prometheus
     hostname: prometheus
     restart: always
+    network_mode: host
     tty: true
     command:
       - --config.file=/etc/prometheus/prometheus.yml
@@ -30,15 +31,16 @@ services:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
       - ./prometheus/rules:/etc/prometheus/rules
       - prometheus-storage:/prometheus
-    ports:
-      - 9090:9090
-    networks:
-      - monitoring
+#    ports:
+#      - 9090:9090
+#    networks:
+#      - monitoring
   alertmanager:
     image: prom/alertmanager:v0.21.0
     container_name: alertmanager
     hostname: alertmanager
     restart: always
+    network_mode: host
     command:
       - --config.file=/etc/alertmanager/alertmanager.yml
       - --storage.path=/alertmanager
@@ -47,17 +49,18 @@ services:
 #      - /etc/localtime:/etc/localtime:ro
       - ./alertmanager/alertmanager.yml:/etc/alertmanager/alertmanager.yml
       - alertmanager-storage:/alertmanager
-    ports:
-      - 9093:9093
-    networks:
-      - monitoring
-    links:
-      - prometheus
+#    ports:
+#      - 9093:9093
+#    networks:
+#      - monitoring
+#    links:
+#      - prometheus
   grafana:
     image: grafana/grafana:7.3.3
     container_name: grafana
     hostname: grafana
     restart: always
+    network_mode: host
 #    environment:
 #      - GF_AUTH_PROXY_ENABLED=true
 #      - GF_AUTH_ANONYMOUS_ENABLED=true
@@ -65,9 +68,9 @@ services:
       - ./grafana/dashboards/:/var/lib/grafana/dashboards
       - ./grafana/provisioning:/etc/grafana/provisioning
       - grafana-storage:/var/lib/grafana
-    ports:
-      - 3000:3000
-    networks:
-      - monitoring
-    links:
-      - prometheus
+#    ports:
+#      - 3000:3000
+#    networks:
+#      - monitoring
+#    links:
+#      - prometheus

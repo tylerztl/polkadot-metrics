@@ -1,24 +1,45 @@
 global:
   resolve_timeout: 5m
-  # The smarthost and SMTP sender used for mail notifications.
-  smtp_smarthost: smtp.qq.com:587 # smtp.gmail.com:587
-  smtp_from: tailin_zhang@qq.com
-  smtp_auth_username: tailin_zhang@qq.com
-  smtp_auth_password: password
-  smtp_require_tls: true
 
 route:
   group_by: [ "alertname" ]
   group_wait: 30s # default = 30s
-  group_interval: 1m # default = 5m
-  repeat_interval: 5m # default = 4h
-  receiver: devops
+  group_interval: 5m # default = 5m
+  repeat_interval: 1h # default = 4h
+  receiver: default-receiver
+  routes:
+    - receiver: elara-node1
+      match_re:
+        job: polkadot-patract-elara-node1|kusama-patract-elara-node1|rococo-patract-elara-node1|jupiter-poa-patract-elara-node1
+    - receiver: elara-node2
+      match_re:
+        job: darwinia-patract-elara-node1|dock-patract-elara-node1|edgeware-patract-elara-node1|kulupu-patract-elara-node1
+    - receiver: elara-node3
+      match_re:
+        job: chainx-patract-elara-node1|mandala-patract-elara-node1|nodle-patract-elara-node1|plasm-patract-elara-node1|stafi-patract-elara-node1
+    - receiver: elara-node4
+      match_re:
+        job: moonbeam-patract-elara-node1|westend-patract-elara-node1
+    - receiver: elara-node5
+      match_re:
+        job: subsocial-patract-elara-node1
 
 receivers:
-  - name: devops
-    email_configs:
-      - to: "tailin_zhang@163.com"
-        headers: { Subject: "Polkadot Node Alerting Email" }
-        send_resolved: true
+  - name: default-receiver
     webhook_configs:
-      - url: http://docker.for.mac.host.internal:8080/webhook
+      - url: http://127.0.0.1:8080/webhook
+  - name: elara-node1
+    webhook_configs:
+      - url: http://172.19.192.99:8080/webhook
+  - name: elara-node2
+    webhook_configs:
+      - url: http://172.24.197.49:8080/webhook
+  - name: elara-node3
+    webhook_configs:
+      - url: http://172.24.197.50:8080/webhook
+  - name: elara-node4
+    webhook_configs:
+      - url: http://172.24.197.60:8080/webhook
+  - name: elara-node5
+    webhook_configs:
+      - url: http://172.24.197.62:8080/webhook
