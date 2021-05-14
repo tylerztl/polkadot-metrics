@@ -6,6 +6,7 @@ groups:
         for: 15s
         labels:
           severity: error
+          level: 4
         annotations:
           summary: "{{ $labels.instance }} 机器上的有节点宕机了"
           instance: "{{ $labels.job }}"

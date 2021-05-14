@@ -6,6 +6,7 @@ groups:
       # Networking
       # 使用 substrate 前缀（*_sub_libp2p_peers_count）的节点有：
       # subsocial、moonbeam、jupiter、dock、edgeware、kulupu、chainx、nodle、plasm、stafi
+      # 告警级别定义 0 信息,1 警告,2 一般严重,3 严重,4 灾难
       ##############################################################################
 
       - alert: libp2p节点连接数太低
@@ -13,14 +14,16 @@ groups:
         for: 3m
         labels:
           severity: warning
+          level: 1
         annotations:
           instance: "{{ $labels.job }}"
-          message: '{{ $labels.instance }} 机器上的 {{ $labels.job }} 节点 libp2p 连接数少于3个的时间已经超过3分钟，请快去检查下！'
+          description: '{{ $labels.instance }} 机器上的 {{ $labels.job }} 节点 libp2p 连接数少于3个的时间已经超过3分钟，请快去检查下！'
       - alert: libp2p节点连接数太低
         expr: substrate_sub_libp2p_peers_count < 3
         for: 15m
         labels:
           severity: critical
+          level: 3
         annotations:
           instance: "{{ $labels.job }}"
           description: '{{ $labels.instance }} 机器上的 {{ $labels.job }} 节点 libp2p 连接数少于3个的时间已经超过15分钟，请快去检查下！'
@@ -28,7 +31,85 @@ groups:
         expr: increase(substrate_sub_libp2p_incoming_connections_total[20m]) == 0
         labels:
           severity: warning
+          level: 1
         annotations:
           instance: "{{ $labels.job }}"
           description: 'The node {{ $labels.instance }} has not received any new incoming
       TCP connection in the past 20 minutes. Is it connected to the Internet?'
+
+      ##############################################################################
+      # Block
+      ##############################################################################
+
+      - alert: 区块 finalized 停止
+        expr: increase(substrate_block_height{status="finalized"}[1m]) < 1
+        for: 3m
+        labels:
+          severity: warning
+          level: 1
+        annotations:
+          instance: "{{ $labels.job }}"
+          description: '{{ $labels.instance }} 机器上的 {{ $labels.job }} 节点 finalized 区块超过3分钟没有增长，请快去检查下！'
+      - alert: 区块 finalized 停止
+        expr: increase(substrate_block_height{status="finalized"}[1m]) < 1
+        for: 10m
+        labels:
+          severity: critical
+          level: 3
+        annotations:
+          description: '{{ $labels.instance }} 机器上的 {{ $labels.job }} 节点 finalized 区块超过10分钟没有增长，请快去检查下！'
+      - alert: 区块 best 停止
+        expr: increase(substrate_block_height{status="best"}[1m]) < 1
+        for: 3m
+        labels:
+          severity: warning
+          level: 1
+        annotations:
+          instance: "{{ $labels.job }}"
+          description: '{{ $labels.instance }} 机器上的 {{ $labels.job }} 节点 best 区块超过3分钟没有增长，请快去检查下！'
+      - alert: 区块 best 停止
+        expr: increase(substrate_block_height{status="best"}[1m]) < 1
+        for: 10m
+        labels:
+          severity: critical
+          level: 3
+        annotations:
+          description: '{{ $labels.instance }} 机器上的 {{ $labels.job }} 节点 best 区块超过10分钟没有增长，请快去检查下！'
+      - alert: 区块 sync_target 停止
+        expr: increase(substrate_block_height{status="sync_target"}[1m]) < 1
+        for: 3m
+        labels:
+          severity: warning
+          level: 1
+        annotations:
+          instance: "{{ $labels.job }}"
+          description: '{{ $labels.instance }} 机器上的 {{ $labels.job }} 节点 sync_target 区块超过3分钟没有增长，请快去检查下！'
+      - alert: 区块 sync_target 停止
+        expr: increase(substrate_block_height{status="sync_target"}[1m]) < 1
+        for: 10m
+        labels:
+          severity: critical
+          level: 3
+        annotations:
+          description: '{{ $labels.instance }} 机器上的 {{ $labels.job }} 节点 sync_target 区块超过10分钟没有增长，请快去检查下！'
+      - alert: 区块 finalized 严重落后于 best
+        # Under the assumption of an average block production of 6 seconds,
+        # "best" and "finalized" being more than 10 blocks apart would imply
+        # more than a 1 minute delay between block production and finalization.
+        expr: (substrate_block_height{status="best"} - substrate_block_height{status="finalized"}) > 10
+        for: 8m
+        labels:
+          severity: critical
+          level: 3
+        annotations:
+          instance: "{{ $labels.job }}"
+          description: "{{ $labels.instance }} 机器上的 {{ $labels.job }} 节点区块 finalized 落后 best {{ $value }} 个区块超过8分钟，请快去检查下！"
+      - alert: 区块 best 严重落后于 sync_target
+        expr: (substrate_block_height{status="sync_target"} - substrate_block_height{status="best"}) > 10
+        for: 8m
+        labels:
+          severity: critical
+          level: 3
+        annotations:
+          instance: "{{ $labels.job }}"
+          description: '{{ $labels.instance }} 机器上的 {{ $labels.job }} 节点区块 best 落后 sync_target {{ $value }} 个区块超过8分钟，请快去检查下！'
