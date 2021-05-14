@@ -1,12 +1,12 @@
 groups:
   - name: alive.rules
     rules:
-      - alert: InstanceDown
+      - alert: 哎呀，您有个节点挂了
         expr: up == 0
-        for: 30s
+        for: 15s
         labels:
           severity: error
         annotations:
-          summary: "Instance {{ $labels.instance }} down"
+          summary: "{{ $labels.instance }} 机器上的有节点宕机了"
           instance: "{{ $labels.job }}"
-          description: "{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 30 seconds."
+          description: "{{ $labels.instance }} 机器上的 {{ $labels.job }} 节点已经挂了超过15秒了，请快去检查下！"

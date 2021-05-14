@@ -1,0 +1,34 @@
+groups:
+  - name: substrate.rules
+    rules:
+
+      ##############################################################################
+      # Networking
+      # 使用 substrate 前缀（*_sub_libp2p_peers_count）的节点有：
+      # subsocial、moonbeam、jupiter、dock、edgeware、kulupu、chainx、nodle、plasm、stafi
+      ##############################################################################
+
+      - alert: libp2p节点连接数太低
+        expr: substrate_sub_libp2p_peers_count < 3
+        for: 3m
+        labels:
+          severity: warning
+        annotations:
+          instance: "{{ $labels.job }}"
+          message: '{{ $labels.instance }} 机器上的 {{ $labels.job }} 节点 libp2p 连接数少于3个的时间已经超过3分钟，请快去检查下！'
+      - alert: libp2p节点连接数太低
+        expr: substrate_sub_libp2p_peers_count < 3
+        for: 15m
+        labels:
+          severity: critical
+        annotations:
+          instance: "{{ $labels.job }}"
+          description: '{{ $labels.instance }} 机器上的 {{ $labels.job }} 节点 libp2p 连接数少于3个的时间已经超过15分钟，请快去检查下！'
+      - alert: 无网络连接
+        expr: increase(substrate_sub_libp2p_incoming_connections_total[20m]) == 0
+        labels:
+          severity: warning
+        annotations:
+          instance: "{{ $labels.job }}"
+          description: 'The node {{ $labels.instance }} has not received any new incoming
+      TCP connection in the past 20 minutes. Is it connected to the Internet?'

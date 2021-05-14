@@ -4,26 +4,27 @@ groups:
 
       ##############################################################################
       # Networking
+      # 使用 polkadot 前缀（*_sub_libp2p_peers_count）的节点有：
+      # polkadot、kusama、westend、rococo
       ##############################################################################
 
-      - alert: NumberOfPeersLow
+      - alert: libp2p节点连接数太低
         expr: polkadot_sub_libp2p_peers_count < 3
         for: 3m
         labels:
           severity: warning
         annotations:
-          message: 'The node {{ $labels.instance }} has less than 3 peers for more
-      than 3 minutes'
-      - alert: NumberOfPeersLow
+          instance: "{{ $labels.job }}"
+          message: '{{ $labels.instance }} 机器上的 {{ $labels.job }} 节点 libp2p 连接数少于3个的时间已经超过3分钟，请快去检查下！'
+      - alert: libp2p节点连接数太低
         expr: polkadot_sub_libp2p_peers_count < 3
         for: 15m
         labels:
           severity: critical
         annotations:
           instance: "{{ $labels.job }}"
-          description: 'The node {{ $labels.instance }} has less than 3 peers for more
-      than 15 minutes'
-      - alert: NoIncomingConnection
+          description: '{{ $labels.instance }} 机器上的 {{ $labels.job }} 节点 libp2p 连接数少于3个的时间已经超过15分钟，请快去检查下！'
+      - alert: 无网络连接
         expr: increase(polkadot_sub_libp2p_incoming_connections_total[20m]) == 0
         labels:
           severity: warning
