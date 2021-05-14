@@ -66,7 +66,7 @@ groups:
           level: 1
         annotations:
           instance: "{{ $labels.job }}"
-          description: '{{ $labels.instance }} 机器上的 {{ $labels.job }} 节点 best 区块超过3分钟没有增长，请快去检查下！'
+          description: '{{ $labels.instance }} 机器上的 {{ $labels.job }} 节点 best 区块超过5分钟没有增长，请快去检查下！'
       - alert: 区块 best 停止
         expr: increase(substrate_block_height{status="best"}[1m]) < 1
         for: 10m
@@ -83,7 +83,7 @@ groups:
           level: 1
         annotations:
           instance: "{{ $labels.job }}"
-          description: '{{ $labels.instance }} 机器上的 {{ $labels.job }} 节点 sync_target 区块超过3分钟没有增长，请快去检查下！'
+          description: '{{ $labels.instance }} 机器上的 {{ $labels.job }} 节点 sync_target 区块超过5分钟没有增长，请快去检查下！'
       - alert: 区块 sync_target 停止
         expr: increase(substrate_block_height{status="sync_target"}[1m]) < 1
         for: 10m
