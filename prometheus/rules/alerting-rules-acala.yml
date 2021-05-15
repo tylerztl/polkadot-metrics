@@ -24,15 +24,15 @@ groups:
         annotations:
           instance: "{{ $labels.job }}"
           description: '{{ $labels.instance }} 机器上的 {{ $labels.job }} 节点 libp2p 连接数少于3个的时间已经超过15分钟，请快去检查下！'
-#      - alert: 无网络连接
-#        expr: increase(acala_sub_libp2p_incoming_connections_total[20m]) == 0
-#        labels:
-#          severity: warning
-#          level: 1
-#        annotations:
-#          instance: "{{ $labels.job }}"
-#          description: 'The node {{ $labels.instance }} has not received any new incoming
-#      TCP connection in the past 20 minutes. Is it connected to the Internet?'
+      - alert: 无网络连接
+        expr: increase(acala_sub_libp2p_incoming_connections_total[20m]) == 0
+        labels:
+          severity: warning
+          level: 1
+        annotations:
+          instance: "{{ $labels.job }}"
+          description: 'The node {{ $labels.instance }} has not received any new incoming
+      TCP connection in the past 20 minutes. Is it connected to the Internet?'
 
       ##############################################################################
       # Block
