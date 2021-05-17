@@ -22,7 +22,7 @@ route:
         job: moonbeam-patract-elara-node1|westend-patract-elara-node1
     - receiver: elara-node5
       match_re:
-        job: subsocial-patract-elara-node1
+        job: subsocial-patract-elara-node1|polkadot-patract-elara-node2|kusama-patract-elara-node2
 
 receivers:
   - name: default-receiver
