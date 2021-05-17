@@ -102,3 +102,11 @@ scrape_configs:
     scrape_interval: 5s
     static_configs:
       - targets: [ '172.24.197.62:9629' ]
+  - job_name: 'polkadot-patract-elara-node2'
+    scrape_interval: 5s
+    static_configs:
+        - targets: [ '172.24.197.62:9617' ]
+  - job_name: 'kusama-patract-elara-node2'
+    scrape_interval: 5s
+    static_configs:
+        - targets: [ '172.24.197.62:9616' ]
