@@ -23,90 +23,69 @@ scrape_configs:
 #  - job_name: "prometheus"
 #    static_configs:
 #      - targets: [ 'prometheus:9090' ]
-  - job_name: 'elara-node1-exporter'
+  - job_name: 'kusama-GER-exporter'
     static_configs:
-      - targets: [ '172.19.192.99:9100' ]
-  - job_name: 'elara-node2-exporter'
+      - targets: [ '172.25.251.231:9100' ]
+  - job_name: 'kusama2-GER-exporter'
     static_configs:
-      - targets: [ '172.24.197.49:9100' ]
-  - job_name: 'elara-node3-exporter'
+      - targets: [ '172.25.251.232:9100' ]
+  - job_name: 'kusama3-GER-exporter'
     static_configs:
-      - targets: [ '172.24.197.50:9100' ]
-  - job_name: 'elara-node4-exporter'
+      - targets: [ '172.25.251.233:9100' ]
+  - job_name: 'kusama4-GER-exporter'
     static_configs:
-      - targets: [ '172.24.197.60:9100' ]
-  - job_name: 'elara-node5-exporter'
+      - targets: [ '172.25.251.235:9100' ]
+  - job_name: 'kusama5-GER-exporter'
     static_configs:
-      - targets: [ '172.24.197.62:9100' ]
-  - job_name: 'polkadot-patract-elara-node1'
+      - targets: [ '172.25.251.236:9100' ]
+  - job_name: 'kusama6-GER-exporter'
+    static_configs:
+        - targets: [ '172.25.251.237:9100' ]
+  - job_name: 'kusama-validator01'
     scrape_interval: 5s
     static_configs:
-      - targets: [ '172.19.192.99:9617' ]
-  - job_name: 'kusama-patract-elara-node1'
+      - targets: [ '172.25.251.231:9615' ]
+  - job_name: 'kusama-validator02'
     scrape_interval: 5s
     static_configs:
-      - targets: [ '172.19.192.99:9616' ]
-  - job_name: 'rococo-patract-elara-node1'
+      - targets: [ '172.25.251.231:9616' ]
+  - job_name: 'kusama-validator03'
     scrape_interval: 5s
     static_configs:
-      - targets: [ '172.19.192.99:9618' ]
-  - job_name: 'jupiter-poa-patract-elara-node1'
+      - targets: [ '172.25.251.235:9615' ]
+  - job_name: 'kusama-validator04'
     scrape_interval: 5s
     static_configs:
-      - targets: [ '172.19.192.99:9615' ]
-  - job_name: 'darwinia-patract-elara-node1'
+      - targets: [ '172.25.251.232:9615' ]
+  - job_name: 'kusama-validator05'
     scrape_interval: 5s
     static_configs:
-      - targets: [ '172.24.197.49:9620' ]
-  - job_name: 'dock-patract-elara-node1'
+      - targets: [ '172.25.251.232:9616' ]
+  - job_name: 'kusama-validator06'
     scrape_interval: 5s
     static_configs:
-      - targets: [ '172.24.197.49:9621' ]
-  - job_name: 'edgeware-patract-elara-node1'
+      - targets: [ '172.25.251.235:9616' ]
+  - job_name: 'kusama-validator07'
     scrape_interval: 5s
     static_configs:
-      - targets: [ '172.24.197.49:9622' ]
-  - job_name: 'kulupu-patract-elara-node1'
+      - targets: [ '172.25.251.236:9615' ]
+  - job_name: 'kusama-validator08'
     scrape_interval: 5s
     static_configs:
-      - targets: [ '172.24.197.49:9625' ]
-  - job_name: 'chainx-patract-elara-node1'
+      - targets: [ '172.25.251.236:9616' ]
+  - job_name: 'kusama-validator09'
     scrape_interval: 5s
     static_configs:
-      - targets: [ '172.24.197.50:9632' ]
-  - job_name: 'mandala-patract-elara-node1'
+      - targets: [ '172.25.251.233:9615' ]
+  - job_name: 'kusama-validator10'
     scrape_interval: 5s
     static_configs:
-      - targets: [ '172.24.197.50:9633' ]
-  - job_name: 'nodle-patract-elara-node1'
+      - targets: [ '172.25.251.237:9615' ]
+  - job_name: 'kusama-validator11'
     scrape_interval: 5s
     static_configs:
-      - targets: [ '172.24.197.50:9626' ]
-  - job_name: 'plasm-patract-elara-node1'
+      - targets: [ '172.25.251.237:9616' ]
+  - job_name: 'polkadot-validator01'
     scrape_interval: 5s
     static_configs:
-      - targets: [ '172.24.197.50:9627' ]
-  - job_name: 'stafi-patract-elara-node1'
-    scrape_interval: 5s
-    static_configs:
-      - targets: [ '172.24.197.50:9628' ]
-  - job_name: 'moonbeam-patract-elara-node1'
-    scrape_interval: 5s
-    static_configs:
-      - targets: [ '172.24.197.60:9635' ]
-  - job_name: 'westend-patract-elara-node1'
-    scrape_interval: 5s
-    static_configs:
-      - targets: [ '172.24.197.60:9634' ]
-  - job_name: 'subsocial-patract-elara-node1'
-    scrape_interval: 5s
-    static_configs:
-      - targets: [ '172.24.197.62:9629' ]
-  - job_name: 'polkadot-patract-elara-node2'
-    scrape_interval: 5s
-    static_configs:
-        - targets: [ '172.24.197.62:9617' ]
-  - job_name: 'kusama-patract-elara-node2'
-    scrape_interval: 5s
-    static_configs:
-        - targets: [ '172.24.197.62:9616' ]
+      - targets: [ '172.25.251.233:9616' ]

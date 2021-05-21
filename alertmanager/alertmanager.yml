@@ -8,38 +8,44 @@ route:
   repeat_interval: 1h # default = 4h
   receiver: default-receiver
   routes:
-    - receiver: elara-node1
+    - receiver: kusama-GER
       match_re:
-        job: polkadot-patract-elara-node1|kusama-patract-elara-node1|rococo-patract-elara-node1|jupiter-poa-patract-elara-node1
-    - receiver: elara-node2
+        job: kusama-validator01|kusama-validator02
+    - receiver: kusama2-GER
       match_re:
-        job: darwinia-patract-elara-node1|dock-patract-elara-node1|edgeware-patract-elara-node1|kulupu-patract-elara-node1
-    - receiver: elara-node3
+        job: kusama-validator04|kusama-validator05
+    - receiver: kusama3-GER
       match_re:
-        job: chainx-patract-elara-node1|mandala-patract-elara-node1|nodle-patract-elara-node1|plasm-patract-elara-node1|stafi-patract-elara-node1
-    - receiver: elara-node4
+        job: kusama-validator09|polkadot-validator01
+    - receiver: kusama4-GER
       match_re:
-        job: moonbeam-patract-elara-node1|westend-patract-elara-node1
-    - receiver: elara-node5
+        job: kusama-validator03|kusama-validator06
+    - receiver: kusama5-GER
       match_re:
-        job: subsocial-patract-elara-node1|polkadot-patract-elara-node2|kusama-patract-elara-node2
+        job: kusama-validator07|kusama-validator08
+    - receiver: kusama6-GER
+      match_re:
+          job: kusama-validator10|kusama-validator11
 
 receivers:
   - name: default-receiver
     webhook_configs:
       - url: http://127.0.0.1:8080/webhook
-  - name: elara-node1
+  - name: kusama-GER
     webhook_configs:
-      - url: http://172.19.192.99:8080/webhook
-  - name: elara-node2
+      - url: http://172.25.251.231:8080/webhook
+  - name: kusama2-GER
     webhook_configs:
-      - url: http://172.24.197.49:8080/webhook
-  - name: elara-node3
+      - url: http://172.25.251.232:8080/webhook
+  - name: kusama3-GER
     webhook_configs:
-      - url: http://172.24.197.50:8080/webhook
-  - name: elara-node4
+      - url: http://172.25.251.233:8080/webhook
+  - name: kusama4-GER
     webhook_configs:
-      - url: http://172.24.197.60:8080/webhook
-  - name: elara-node5
+      - url: http://172.25.251.235:8080/webhook
+  - name: kusama5-GER
     webhook_configs:
-      - url: http://172.24.197.62:8080/webhook
+      - url: http://172.25.251.236:8080/webhook
+  - name: kusama6-GER
+    webhook_configs:
+      - url: http://172.25.251.237:8080/webhook
